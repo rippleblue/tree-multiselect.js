@@ -28,14 +28,13 @@ module.exports = function(grunt) {
       }
     },
 
-    // JSHint
-    jshint: {
+    // ESLint
+    eslint: {
       options: {
-        esversion: 6
+        configFile: 'conf/eslint.json'
       },
-      all: ['src/**/*.js']
+      target: ['src/**/*.js']
     },
-
 
     // Karma runner
     karma: {
@@ -108,12 +107,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-banner');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-coveralls');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
-  grunt.registerTask('test-local', ['karma:local', 'jshint']);
+  grunt.registerTask('test-local', ['karma:local', 'eslint']);
   grunt.registerTask('test-travis', ['test-local', 'coveralls']);
   grunt.registerTask('test-watch', ['karma:continuous']);
 
